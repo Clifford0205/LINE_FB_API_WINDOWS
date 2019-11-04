@@ -1,0 +1,12 @@
+1.接在項目的根目錄使用mkcert，首先執行mkcert -install，在彈出的窗口點擊是即可，然後直接一鍵命令mkcert 127.0.0.1，此時你的項目根目錄下已經有一個證書和一個私鑰文件了。
+
+
+
+2.根目錄新建一個.vscode文件夾，只能在VSCode中新建，在外面新建不了該文件夾，然後新建一個settings.json文件，內容如下
+{ "liveServer.settings.https": { "enable": true, "cert": "E://httpsTest//127.0.0.1.pem",//證書根路徑 "key": "E://httpsTest//127.0.0.1-key.pem",//私鑰根目錄 "passphrase": "12345" } }
+
+
+3.開啟時按右下角的GO LIVE 即可
+原文網址：https://kknews.cc/code/klz4b4p.html
+
+

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./content/css/all.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row the-area">
+            <div class="col d-flex align-items-center justify-content-center">
+                <div class="member-popup">
+                    <div class="member-card">
+                        <h2 class="text-center">您有會員卡嗎？</h2>
+                        <div class="d-flex justify-content-around mt-5">
+                            <a href="no_card.html" class="submitbtn nohave">沒有</a>
+                            <a href="test.html" class="submitbtn have">有</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+<script>
+    let whatapp = location.search.slice(1, 5);
+
+    let myid = location.search.slice(9).split("&")[0];
+
+    let name = location.search.split('name')[1].slice(1);
+
+    let truename = decodeURI(name);
+
+    console.log(myid);
+
+    console.log(whatapp);
+
+    console.log(name);
+
+    console.log(truename);
+
+    if (whatapp === "myfb") {
+        document.querySelector('.nohave').setAttribute("href", "no_card.html?myfb_id=" + myid + "&name=" + name);
+
+        document.querySelector('.have').setAttribute("href", "C_cardinfo.html?myfb_id=" + myid);
+    } else {
+        document.querySelector('.nohave').setAttribute("href", "no_card.html?line_id=" + myid + "&name=" + name);
+
+        document.querySelector('.have').setAttribute("href", "C_cardinfo.html?line_id=" + myid);
+    }
+
+
+</script>
+
+</html>

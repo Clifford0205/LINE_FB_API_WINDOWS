@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="./content/css/all.css">
+    <title>Document</title>
+
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row the-area">
+            <div class="col d-flex align-items-center justify-content-center">
+
+                <div class="member-popup">
+                    <div class="card-info">
+                        <h2 class="text-center">聯絡客服</h2>
+                        <form action="">
+
+                            <div class="d-flex justify-content-center">
+                                <div class="theinput ">
+                                    您的名字<input type="text" name="name" class="card w-100">
+                                </div>
+                            </div>
+
+                            <div class="d-flex justify-content-center mt-3">
+                                <div class="theinput ">
+                                    聯絡手機<input type="text" name="mobile" class="mobile w-100">
+                                </div>
+                            </div>
+
+                            <div class="d-flex justify-content-center mt-3">
+                                <div class="theinput ">
+                                    e-mail<input type="text" name="email" class="w-100">
+                                </div>
+                            </div>
+
+                            <div class="d-flex justify-content-center mt-3">
+                                <div class="theinput ">
+                                    問題內容 <br> <textarea name="" id="" cols="30" rows="10"
+                                        class="w-100 question"></textarea>
+                                </div>
+                            </div>
+                            <p class="text-center mt-3">會員卡詢問請洽分店，或電洽總部0800-062-888</p>
+                            <div class="d-flex service_btn">
+                                <button type="button" onclick="sendinfo()"
+                                    class="mx-auto d-block submitbtn mt-3">確認</button>
+
+                                <button type="button" class="mx-auto d-block submitbtn mt-3">取消</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+<script>
+
+    let memberCardNo = "";
+
+    let mobile = "";
+
+    console.log(memberCardNo)
+
+    sendinfo = () => {
+        // axios('http://203.69.60.193:31480/API/Customer.svc/getdata?memberCardNo=H1658174&mobile=0975387808', {
+        //     // params: {
+        //     //     memberCardNo: memberCardNo,
+        //     //     mobile: mobile
+
+        //     // }
+        // })
+        //     .then(function (response) {
+        //         console.log(response);
+        //     })
+        //     .catch(function (error) {
+        //         console.log(error);
+        //     });
+
+        // fetch('http://www.myhappy.com.tw/API/Customer.svc/getdata?memberCardNo=H1658174&mobile=0975387808',
+        //     {
+        //         method: "GET",
+
+        //     }).then(function (response) {
+        //         console.log(response);
+        //     })
+        //     .catch(function (error) {
+        //         console.log(error);
+        //     });
+        memberCardNo = document.querySelector(".card").value;
+
+        mobile = document.querySelector(".mobile").value;
+        console.log(memberCardNo);
+
+        console.log(mobile);
+
+        fetch("http://203.69.60.193:31480/API/Customer.svc/getdata?memberCardNo=" + memberCardNo + "&mobile=" + mobile, {
+            credentials: 'include',
+            method: 'GET',
+        })
+            .then(response => response.json())
+            .then(obj => {
+                console.log(obj[0]);
+                if (obj[0]) {
+                    window.location.href = 'B_membercard.html';
+                }
+            })
+
+        // axios.get('http://203.69.60.193:31480/API/Customer.svc/getdata?memberCardNo=H1658174&mobile=0975387808')
+        //     .then(function (response) {
+        //         // handle success
+        //         console.log(response);
+        //     })
+        //     .catch(function (error) {
+        //         // handle error
+        //         console.log(error);
+        //     })
+        //     .finally(function () {
+        //         // always executed
+        //     });
+    }
+
+
+</script>
+
+</html>

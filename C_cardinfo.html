@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="./content/css/all.css">
+    <title>Document</title>
+
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row the-area">
+            <div class="col d-flex align-items-center justify-content-center">
+
+                <div class="member-popup">
+                    <div class="card-info">
+                        <h2 class="text-center">請完成以下資訊</h2>
+                        <form action="" method="post" name="form1" onsubmit="return checkForm();">
+
+                            <div class="d-flex justify-content-center">
+                                <div class="theinput ">
+                                    卡號*<input type="text" name="memberCardNo" class="card w-100">
+                                </div>
+                            </div>
+
+                            <div class="d-flex justify-content-center mt-3">
+                                <div class="theinput ">
+                                    手機*<input type="text" name="mobile" class="w-100 mobile">
+                                </div>
+                            </div>
+                            <div id="mobilelHelp" class="text-center " style="color:red"> </div>
+
+                            <div class="d-flex justify-content-center mt-3">
+                                <div class="theinput ">
+                                    e-mail<input type="text" name="email" class="w-100 email">
+                                </div>
+                            </div>
+                            <div id="emailHelp" class="text-center " style="color:red"> </div>
+                            <button type="submit" class="mx-auto d-block submitbtn mt-5">確認</button>
+                        </form>
+
+                        <p class="text-center mt-5"><a href="" class="customer_service ">聯絡客服</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+<script>
+
+    let memberCardNo = "";
+
+    let mobile = "";
+
+    let mymail = "";
+
+
+    let myid = location.search.slice(9);
+
+    let whatapp = location.search.slice(1, 5);
+
+
+    console.log(whatapp);
+
+
+
+    console.log(myid)
+
+    const checkForm = () => {
+        let isPassed = true;
+
+        memberCardNo = document.querySelector('.card').value;
+
+        mobile = document.querySelector('.mobile').value;
+
+        mymail = document.querySelector('.email').value;
+
+        console.log(memberCardNo);
+
+        console.log(mobile);
+
+        console.log(mymail);
+
+
+        let email_pattern = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+
+        let mobile_pattern = /^09\d{8}$/;
+
+
+        // if (!mobile_pattern.test(mymail)) {
+        //     document.querySelector('#mobileHelp').innerHTML = '請填寫正確的 Email!';
+        //     isPassed = false;
+        // }
+
+        if (!mobile_pattern.test(mobile)) {
+            document.querySelector('#mobilelHelp').innerHTML = '請填寫正確的手機號碼!';
+            isPassed = false;
+        }
+
+
+        if (!email_pattern.test(mymail)) {
+            document.querySelector('#emailHelp').innerHTML = '請填寫正確的 Email!';
+            isPassed = false;
+        }
+
+
+
+
+
+
+        if (isPassed) {
+            // axios("http://203.69.60.193:31480/API/Customer.svc/getdata?memberCardNo=" + memberCardNo + "&mobile=" + mobile)
+            axios("http://localhost:5555/fortest?MemberCardNo=" + memberCardNo + "&mobile=" + mobile)
+                // .then(response => response.data)
+                .then(response => { console.log(response); return response.data })
+                .then(obj => {
+                    console.log(obj);
+                    if (obj.length !== 0) {
+                        axios("http://localhost:5555/line?cardno=" + obj[0].MemberCardNo)
+                            .then(response => {
+                                console.log(response.data.length)
+                                if (response.data.length !== 0) { window.location.href = 'D_alreadyuse.html?line_id=' + myid }
+                                else {
+
+                                    if (whatapp === "myfb") {
+                                        axios({
+                                            method: 'post',
+                                            url: 'http://localhost:5555/line',
+                                            data: {
+                                                email: mymail,
+                                                myfb_id: myid,
+                                                line_id: "",
+                                                cardno: memberCardNo,
+                                                mobile: mobile,
+                                                nickname: ""
+                                            },
+                                        }).then(res => { window.location.href = 'success.html'; })
+                                            .catch(function (error) {
+                                                console.log(error);
+                                            });
+                                    } else {
+                                        axios({
+                                            method: 'post',
+                                            url: 'http://localhost:5555/line',
+                                            data: {
+                                                email: mymail,
+                                                line_id: myid,
+                                                myfb_id: "",
+                                                cardno: memberCardNo,
+                                                mobile: mobile,
+                                                nickname: ""
+                                            },
+                                        }).then(res => { window.location.href = 'success.html'; })
+                                            .catch(function (error) {
+                                                console.log(error);
+                                            });
+                                    }
+
+                                }
+                            })
+                            .catch(function (error) {
+                                console.log(error);
+                            });
+                    } else {
+                        window.location.href = 'infowrong.html?line_id=' + myid
+                    }
+                })
+
+                .catch(function (error) {
+                    console.log(error);
+                });
+        }
+
+        return false;
+
+    }
+
+
+
+
+</script>
+
+</html>

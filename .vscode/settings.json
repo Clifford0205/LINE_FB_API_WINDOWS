@@ -1,0 +1,8 @@
+{
+  "liveServer.settings.https": {
+    "enable": true,
+    "cert": "D://桌面/LINE_FB_API_WINDOWS/127.0.0.1.pem", //證書根路徑
+    "key": "D://桌面/LINE_FB_API_WINDOWS/127.0.0.1-key.pem", //私鑰根目錄
+    "passphrase": "12345"
+  }
+}

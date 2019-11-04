@@ -1,0 +1,164 @@
+.the-area {
+  height: 100vh;
+  /* Facebook */
+}
+
+.the-area a {
+  color: #000000;
+}
+
+.the-area a:hover {
+  text-decoration: none;
+}
+
+.the-area .theline {
+  width: 3px;
+  background-color: #000;
+  margin: 0 10px;
+}
+
+.the-area .theinput {
+  border: 1px solid #cccccc;
+  border-radius: 3px;
+  width: 70%;
+}
+
+.the-area .resend {
+  margin-left: 15px;
+  padding: 0 10px;
+  background-color: transparent;
+  border-radius: 5px;
+}
+
+.the-area .resend:focus {
+  outline: none;
+}
+
+.the-area .question {
+  border: none;
+}
+
+.the-area .question:focus {
+  outline: none;
+}
+
+.the-area .service_btn {
+  width: 70%;
+  margin: 0 auto;
+}
+
+.the-area .submitbtn {
+  font-size: 20pt;
+  padding: 10px 45px;
+  background: -webkit-gradient(linear, left top, left bottom, from(#565353), to(#261b18));
+  background: linear-gradient(to bottom, #565353 0%, #261b18 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+}
+
+.the-area .submitbtn:focus {
+  outline: none;
+}
+
+.the-area .customer_service {
+  color: #000000;
+}
+
+.the-area .text-input {
+  width: 57%;
+}
+
+.the-area input {
+  border: none;
+}
+
+.the-area input:focus {
+  outline: none;
+}
+
+.the-area .member-popup {
+  width: 500px;
+  padding: 30px 0;
+  border: 1px solid black;
+}
+
+.the-area .member-popup .my-index button {
+  border: none;
+}
+
+.the-area .member-popup .my-index button:focus {
+  outline: none;
+}
+
+.the-area .member-popup .my-index button img {
+  width: 69%;
+}
+
+.the-area .member-popup .member-card a {
+  text-align: center;
+  color: #ffffff;
+  display: block;
+  background-color: #1d0808;
+}
+
+.the-area .member-popup .member-card a:hover {
+  text-decoration: none;
+}
+
+.the-area .loginBtn {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  position: relative;
+  /* width: 13em;  - apply for fixed size */
+  margin: 0.2em;
+  padding: 0 15px 0 46px;
+  border: none;
+  text-align: left;
+  line-height: 34px;
+  white-space: nowrap;
+  border-radius: 0.2em;
+  font-size: 16px;
+  color: #FFF;
+}
+
+.the-area .loginBtn:before {
+  content: "";
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 34px;
+  height: 100%;
+}
+
+.the-area .loginBtn:focus {
+  outline: none;
+}
+
+.the-area .loginBtn:active {
+  -webkit-box-shadow: inset 0 0 0 32px rgba(0, 0, 0, 0.1);
+          box-shadow: inset 0 0 0 32px rgba(0, 0, 0, 0.1);
+}
+
+.the-area .loginBtn--facebook {
+  background-color: #4C69BA;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#4C69BA), to(#3B55A0));
+  background-image: linear-gradient(#4C69BA, #3B55A0);
+  /*font-family: "Helvetica neue", Helvetica Neue, Helvetica, Arial, sans-serif;*/
+  text-shadow: 0 -1px 0 #354C8C;
+}
+
+.the-area .loginBtn--facebook:before {
+  border-right: #364e92 1px solid;
+  background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/icon_facebook.png") 6px 6px no-repeat;
+}
+
+.the-area .loginBtn--facebook:hover,
+.the-area .loginBtn--facebook:focus {
+  background-color: #5B7BD5;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#5B7BD5), to(#4864B1));
+  background-image: linear-gradient(#5B7BD5, #4864B1);
+}
+/*# sourceMappingURL=all.css.map */
